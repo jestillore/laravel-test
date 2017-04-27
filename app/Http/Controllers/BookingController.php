@@ -208,30 +208,23 @@ class BookingController extends Controller
             $session = "";
         }
 
-        if ($data['flagged'] == 'true') {
-            if($data['admincomment'] == '') return "Please, add comment";
+        if ($data['flagged'] === 'true') {
+            if($data['admincomment'] === '') return "Please, add comment";
             $flagged = 'yes';
         } else {
             $flagged = 'no';
         }
         
-        if ($data['manually_handled'] == 'true') {
-            $manually_handled = 'yes';
-        } else {
-            $manually_handled = 'no';
-        }
+        $manually_handled = array_get($data, 'manually_handled') === 'true' ? 'yes' : 'no';
 
-        if ($data['by_admin'] == 'true') {
-            $by_admin = 'yes';
-        } else {
-            $by_admin = 'no';
-        }
+        $by_admin = array_get($data, 'by_admin') === 'true' ? 'yes' : 'no';
 
         if (isset($data['admincomment']) && $data['admincomment'] != "") {
             $admincomment = $data['admincomment'];
         } else {
             $admincomment = "";
         }
+
         if ($time || $distance) {
 
             $affectedRows = Distance::where('job_id', '=', $jobid)->update(array('distance' => $distance, 'time' => $time));
