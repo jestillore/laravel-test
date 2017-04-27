@@ -177,7 +177,6 @@ class BookingController extends Controller
      */
     public function getPotentialJobs(Request $request)
     {
-        $data = $request->all();
         $user = $request->__authenticatedUser;
 
         $response = $this->repository->getPotentialJobs($user);
