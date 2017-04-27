@@ -72,7 +72,7 @@ class BookingRepository extends BaseRepository
 
         if ($jobs) {
             foreach ($jobs as $jobitem) {
-                if ($jobitem->immediate == 'yes') {
+                if ($jobitem->immediate === 'yes') {
                     $emergencyJobs[] = $jobitem;
                 } else {
                     $noramlJobs[] = $jobitem;
